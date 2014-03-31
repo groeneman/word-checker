@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app="scrabbleApp">
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+        <script src="/scrabble.js"></script>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <title>
+            Wordizer
+        </title>
+    </head>
+    
+    <body ng-controller="WordController">
+        <div>
+              <form class='form-inline'>
+              <label>Word:</label>
+              <input type="text" ng-change="clear()" ng-model="word" placeholder="Enter a name here">
+              <button type="submit" ng-click="checkWord()">Check</button>
+              <hr>
+              <h1>{{word}}</h1>
+              <h2 ng-show="wordChecked">{{ resultString() }}</h2>
+        </div>
+    </body>
+</html>
