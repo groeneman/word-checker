@@ -24,10 +24,19 @@ scrabbleApp.controller('WordController', function($scope, $http) {
   
   $scope.resultString = function(){
       if($scope.isAWord) {
-          return "Is a word";
+          return "is a word";
       }
       else {
-          return "Is not a word";
+          return "is not a word";
+      }
+  }
+  
+  $scope.resultStyle = function(){
+      if($scope.isAWord) {
+          return {color:'green'};
+      }
+      else {
+          return {color:'red'};
       }
   }
 });
