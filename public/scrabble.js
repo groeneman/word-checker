@@ -1,29 +1,25 @@
-var scrabbleApp = angular.module('scrabbleApp', []);
+angular.module('scrabbleApp', []).controller('WordController', function($scope, wordChecker) {
 
-scrabbleApp.controller('WordController', function($scope, $http) {
+  $scope.data = {
+    word: "",
+    wordChecked: false,
+    isAWord: null,
+  }
 
-  $scope.word = "";
-  $scope.wordChecked = false;
-  $scope.isAWord = null;
-    
-  $scope.checkWord = function(){
-      $http.get('/words/' + $scope.word)
-        .success(function(result){
-            $scope.wordChecked = true;
-            $scope.isAWord = result.is_a_word;
-        })
-        .error(function(result){
-            alert(result)
-        });
+  $scope.checkWord = function() {
+      wordChecker.checkWord($scope.data.word).then(function(result){
+          $scope.data.wordChecked = true;
+          $scope.data.isAWord = result.is_a_word;
+      })
   }
   
   $scope.clear = function(){
-      $scope.wordChecked = false;
-      $scope.isAWord = null;
+      $scope.data.wordChecked = false;
+      $scope.data.isAWord = null;
   }
   
   $scope.resultString = function(){
-      if($scope.isAWord) {
+      if($scope.data.isAWord) {
           return "is a word";
       }
       else {
@@ -32,11 +28,25 @@ scrabbleApp.controller('WordController', function($scope, $http) {
   }
   
   $scope.resultStyle = function(){
-      if($scope.isAWord) {
+      if($scope.data.isAWord) {
           return {color:'green'};
       }
       else {
           return {color:'red'};
       }
   }
-});
+}).factory('wordChecker', function($http, $q){
+    return { 
+        checkWord: function(word){
+            var d = $q.defer();
+            $http.get('/words/' + word)
+              .success(function(result){
+                  d.resolve(result);
+              })
+              .error(function(result){
+                  alert(result)
+              });
+              return d.promise;
+        }
+     }
+})

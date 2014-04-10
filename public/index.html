@@ -24,12 +24,12 @@
         <div id="container" class="col-sm-6 col-sm-offset-3">
               <form class='form-inline'>
                   <div class="form-group">
-                      <input type="text" class="form-control" ng-change="clear()" ng-model="word" placeholder="Enter a word here">
+                      <input type="text" class="form-control" ng-change="clear()" ng-model="data.word" placeholder="Enter a word here">
                   </div>
                   <button class="btn btn-primary" type="submit" ng-click="checkWord()">Check</button>
               </form>
               <hr>
-              <h1>{{word}} <span ng-style="resultStyle()" ng-show="wordChecked">{{ resultString() }}.</span></h1>
+              <h1>{{ data.word }} <span ng-style="resultStyle()" ng-show="data.wordChecked">{{ resultString() }}.</span></h1>
         </div>
     </body>
 </html>
