@@ -1,8 +1,15 @@
 {
   "name": "word-checker",
-  "description": "an app for scrabble word checking",
+  "description": "an app for validating the existence of words in the dictionary",
   "version": "0.0.1",
+  "engines": {
+    "node": "0.10.x"
+  },
   "dependencies": {
     "express": "^3.18.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mgroeneman/word-checker.git"
   }
 }
