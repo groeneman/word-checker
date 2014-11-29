@@ -9,15 +9,15 @@ angular.module('scrabbleApp', []).controller('WordController', function($scope, 
   $scope.checkWord = function() {
       wordChecker.checkWord($scope.data.word).then(function(result){
           $scope.data.wordChecked = true;
-          $scope.data.isAWord = result.is_a_word;
+          $scope.data.isAWord = result.isAWord;
       })
   }
-  
+
   $scope.clear = function(){
       $scope.data.wordChecked = false;
       $scope.data.isAWord = null;
   }
-  
+
   $scope.resultString = function(){
       if($scope.data.isAWord) {
           return "is a word";
@@ -26,7 +26,7 @@ angular.module('scrabbleApp', []).controller('WordController', function($scope, 
           return "is not a word";
       }
   }
-  
+
   $scope.resultStyle = function(){
       if($scope.data.isAWord) {
           return {color:'green'};
@@ -36,7 +36,7 @@ angular.module('scrabbleApp', []).controller('WordController', function($scope, 
       }
   }
 }).factory('wordChecker', function($http, $q){
-    return { 
+    return {
         checkWord: function(word){
             var d = $q.defer();
             $http.get('/words/' + word)
