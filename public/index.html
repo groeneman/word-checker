@@ -28,8 +28,9 @@
                   </div>
                   <button class="btn btn-primary" type="submit" ng-click="checkWord()">Check</button>
               </form>
-              <hr>
+              <hr />
               <h1>{{ data.word }} <span ng-style="resultStyle()" ng-show="data.wordChecked">{{ resultString() }}.</span></h1>
+              <h4><a ng-show="data.wordChecked && data.isAWord" ng-href="{{ definitionUrl() }}">Define</a></h4>
         </div>
     </body>
 </html>

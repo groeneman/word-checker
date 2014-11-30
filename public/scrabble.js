@@ -27,6 +27,10 @@ angular.module('scrabbleApp', []).controller('WordController', function($scope, 
       }
   }
 
+  $scope.definitionUrl = function(){
+    return "https://www.google.com/search?q=define " + $scope.data.word
+  }
+
   $scope.resultStyle = function(){
       if($scope.data.isAWord) {
           return {color:'green'};
